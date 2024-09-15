@@ -26,17 +26,10 @@ jobs:
       # Install dependencies
       - run: npm ci
 
-        # Debug environment variables
-      - name: Debug environment variables
-        run: |
-          echo "DB_URL=$DB_URL"
-          echo "PORT=$PORT"
-          echo "SECRET_KEY=$SECRET_KEY"
+      # Copy .env file to the working directory
+      - name: Copy .env file
+        run: cp path/to/.env .env
 
-      # Run test cases with environment variables passed
+      # Run test cases
       - name: Run tests
         run: npm test -- --timeout 5000
-        env:
-          DB_URL: ${{ secrets.DB_URL }}
-          PORT: ${{ secrets.PORT }}
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
