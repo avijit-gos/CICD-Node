@@ -26,9 +26,11 @@ jobs:
       # Install dependencies
       - run: npm ci
 
-      # Copy .env file to the working directory
-      - name: Copy .env file
-        run: cp path/to/.env .env
+      # Download .env file
+      - name: Download .env file
+        uses: actions/download-artifact@v3
+        with:
+          name: env-file
 
       # Run test cases
       - name: Run tests
