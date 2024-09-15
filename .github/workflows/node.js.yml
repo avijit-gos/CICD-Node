@@ -26,6 +26,13 @@ jobs:
       # Install dependencies
       - run: npm ci
 
+        # Debug environment variables
+      - name: Debug environment variables
+        run: |
+          echo "DB_URL=$DB_URL"
+          echo "PORT=$PORT"
+          echo "SECRET_KEY=$SECRET_KEY"
+
       # Run test cases with environment variables passed
       - name: Run tests
         run: npm test -- --timeout 5000
