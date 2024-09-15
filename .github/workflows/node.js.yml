@@ -30,5 +30,4 @@ jobs:
           echo "SECRET_KEY=${{secrets.SECRET_KEY}}" >> .env
 
       - run: npm ci
-      - run: npm run build --if-present4
       - run: npm test # This line is used to run test cases

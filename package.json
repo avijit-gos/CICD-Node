@@ -4,7 +4,7 @@
   "description": "Basic CICD tutorial with Github actions & Nodejs load test with Gafana",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha ./test/**/*.js",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
