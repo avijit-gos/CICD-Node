@@ -23,19 +23,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
 
-      # Set up environment variables
-      - name: Set up .env file
-        run: |
-          echo "DB_URL=${{ secrets.DB_URL }}" >> .env
-          echo "PORT=${{ secrets.PORT }}" >> .env
-          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
-
-      # Debug step to print .env file content
-      - name: Debug environment variables
-        run: cat .env
-
       # Install dependencies
       - run: npm ci
 
-      # Run test cases
-      - run: npm test
+      # Run test cases with environment variables passed
+      - name: Run tests
+        run: npm test -- --timeout 5000
+        env:
+          DB_URL: ${{ secrets.DB_URL }}
+          PORT: ${{ secrets.PORT }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
