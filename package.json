@@ -4,7 +4,7 @@
   "description": "Basic CICD tutorial with Github actions & Nodejs load test with Gafana",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
@@ -20,9 +20,13 @@
     "http-errors": "^2.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.6.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "xss-clean": "^0.1.4"
   },
   "devDependencies": {
+    "chai": "^4.0.0",
+    "chai-http": "^4.0.0",
+    "mocha": "^8.0.0",
     "nodemon": "^3.1.4"
   }
 }

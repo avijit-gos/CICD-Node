@@ -1,8 +1,10 @@
+# @format
+
 name: Node.js CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
   build:
@@ -13,18 +15,20 @@ jobs:
         node-version: [18.x, 20.x, 22.x]
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
 
-    # Set up environment variables
-    - name: Set up .env file
-      run: |
-        echo "DB_URL=${{ secrets.DB_URL }}" >> .env
-        echo "PORT=${{ secrets.PORT }}" >> .env
+      # Set up environment variables
+      - name: Set up .env file
+        run: |
+          echo "DB_URL=${{ secrets.DB_URL }}" >> .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "SECRET_KEY=${{secrets.SECRET_KEY}}" >> .env
 
-    - run: npm ci
-    - run: npm run build --if-present
+      - run: npm ci
+      - run: npm run build --if-present4
+      - run: npm test # This line is used to run test cases
